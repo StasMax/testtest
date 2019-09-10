@@ -1,5 +1,6 @@
 package gmail;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,10 +35,12 @@ public class LoginGmail {
     @FindBy(id = "passwordNext")
     private WebElement nextButtonPassword;
 
+    @Step("Open browser")
     public void open() {
         driver.get(SITE_URL);
     }
 
+    @Step("Enter e-mail in field and submit")
     public void enterEmail() {
         emailIdentifier.click();
         emailIdentifier.sendKeys(LOGIN);
@@ -45,12 +48,14 @@ public class LoginGmail {
         wait.until(ExpectedConditions.visibilityOfElementLocated(pass));
     }
 
+    @Step("Enter password in field and submit")
     public void enterPassword() {
         passwordIdentifier.click();
         driver.findElement(password).sendKeys(PASSWORD);
         nextButtonPassword.click();
     }
 
+    @Step("Check on recovery page open")
     public void pageRecoveryAccount() {
         if (driver.getTitle().equals("Параметры восстановления аккаунта")) {
             driver.findElement(buttonCancel).click();

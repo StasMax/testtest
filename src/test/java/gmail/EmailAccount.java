@@ -1,5 +1,6 @@
 package gmail;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -43,6 +44,7 @@ public class EmailAccount {
         wait = new WebDriverWait(driver, 10);
     }
 
+    @Step("Click on triangle button of search field, open table search, enter search keyword in field")
     public void getSearchResultByWord(String searchWord) {
         driver.findElement(searchTriangleButton).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(fullSearchFields));
@@ -51,33 +53,40 @@ public class EmailAccount {
         searchButton.click();
     }
 
+    @Step("Get number of e-mails for keyword")
     public String getCountEmail() {
         return driver.findElement(countEmail).getText();
     }
 
+    @Step("Click button new message, open table new message")
     public void openSendEmailForm() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(bodyEmails));
         sendEmailButton.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(bodyDescription));
     }
 
+    @Step("Fill e-mail field")
     public void fillEmailFormAdress(String address) {
         emailField.sendKeys(address);
     }
 
+    @Step("Fill topic field")
     public void fillEmailFormTopic(String topic) {
         topicField.sendKeys(topic);
     }
 
+    @Step("Fill description field")
     public void fillEmailFormDescription(String description) {
         descriptionField.sendKeys(description);
     }
 
+    @Step("Click send e-mail button")
     public void sendEmail() {
         sendEmail.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(bodyEmailSent));
     }
 
+    @Step("Close browser")
     public void close() {
         driver.quit();
     }
