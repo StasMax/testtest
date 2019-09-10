@@ -15,6 +15,7 @@ public class LoginGmail {
     private By pass = By.id("password");
     private By password = By.cssSelector("[aria-label=\"Введите пароль\"]");
     private By buttonCancel = By.cssSelector("[jsname=\"UjXomb\"]");
+    private By bodyRecovery = By.id(":3");
 
     public LoginGmail(WebDriver driver) {
         this.driver = driver;
@@ -54,6 +55,6 @@ public class LoginGmail {
         if (driver.getTitle().equals("Параметры восстановления аккаунта")) {
             driver.findElement(buttonCancel).click();
         }
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(":3")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(bodyRecovery));
     }
 }
