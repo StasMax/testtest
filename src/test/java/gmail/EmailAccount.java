@@ -1,5 +1,6 @@
 package gmail;
 
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -54,6 +55,7 @@ public class EmailAccount {
     }
 
     @Step("Get number of e-mails for keyword")
+    @Attachment(value = "Count e-mail from Farit", type = "plain/text", fileExtension = ".txt")
     public String getCountEmail() {
         return driver.findElement(countEmail).getText();
     }
@@ -65,17 +67,17 @@ public class EmailAccount {
         wait.until(ExpectedConditions.visibilityOfElementLocated(bodyDescription));
     }
 
-    @Step("Fill e-mail field")
-    public void fillEmailFormAdress(String address) {
+    @Step("Fill e-mail field: {address}")
+    public void fillEmailFormAddress(String address) {
         emailField.sendKeys(address);
     }
 
-    @Step("Fill topic field")
+    @Step("Fill topic field: {topic}")
     public void fillEmailFormTopic(String topic) {
         topicField.sendKeys(topic);
     }
 
-    @Step("Fill description field")
+    @Step("Fill description field: {description}")
     public void fillEmailFormDescription(String description) {
         descriptionField.sendKeys(description);
     }
